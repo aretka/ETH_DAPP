@@ -1,0 +1,63 @@
+main {
+    margin-top: 60px;
+  }
+
+  #content {
+    display: none;
+  }
+
+  form {
+    width: 350px;
+    margin-bottom: 10px;
+  }
+
+  ul {
+    margin-bottom: 0px;
+  }
+
+  #completedTaskList .content {
+    color: grey;
+    text-decoration: line-through;
+  }
+  .quantity {
+      color: blue;
+  }
+
+  .Container {
+      width: 400px;
+      height: auto;
+      margin: 40px auto;
+  }
+  h1 {
+      text-align: center;
+  }
+  .orders {
+      float: left;
+      margin: 0;
+      width: auto;
+  }
+  
+  .functionContainer {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 10px;
+    margin-bottom: 25px;
+  }
+  
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  #infoButton:hover {
+    background-color: #d4d4d4;
+  } 
+
+  h1 {
+    padding-top: 70px;
+  }
+
+  .allowInfo {
+    margin-top: -5px;
+    font-size: 10px;
+  }

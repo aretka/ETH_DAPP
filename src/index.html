@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Dapp University | Todo List</title>
+
+    <!-- Bootstrap -->
+    <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Smart contract DAPP</a>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap d-none d-sm-none d-sm-block">
+          <small><a class="nav-link" href="#"><span id="account"></span></a></small>
+        </li>
+      </ul>
+    </nav>
+    
+    <h1>PRODUCT DELIVERY CONTRACT FUNCTIONS</h1>
+    <div class="Container">
+        
+
+        <!--Function where customer can send order-->
+        <div class="functionContainer">
+            <h4>1. Send order</h4>
+            <p class="allowInfo">Only allowed for customer</p>
+            <form onSubmit="App.sendOrder();">
+                <label for="productName">Enter product name:</label><br>
+                <input type="text" id="productName" name="productName" placeholder="product_name"><br>
+
+                <label for="productQuantity">Enter quantity:</label><br>
+                <input type="number" id="productQuantity" name="productQuantity" placeholder="quantity"><br>
+
+                <label for="productLocation">Enter delivery location:</label><br>
+                <input type="text" id="productLocation" name="productLocation" placeholder="location"><br><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <!--Function where owner can send order price-->
+        <div class="functionContainer">
+            <h4>2. Send order price</h4>
+            <p class="allowInfo">Only allowed for owner</p>
+            <form onSubmit="App.sendOrderPrice();">
+                <label for="1_orderID">Enter product ID:</label><br>
+                <input type="text" id="1_orderID" name="1_orderID" placeholder="order_id"><br>
+
+                <label for="orderPrice">Enter product price:</label><br>
+                <input type="number" id="orderPrice" name="orderPrice" placeholder="order_price"><br><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <!--Function where owner can send shipment price-->
+        <div class="functionContainer">
+            <h4>3. Send shipment price</h4>
+            <p class="allowInfo">Only allowed for owner</p>
+            <form onSubmit="App.sendShipmentPrice();">
+                <label for="2_orderID">Enter product ID:</label><br>
+                <input type="text" id="2_orderID" name="2_orderID" placeholder="order_id"><br>
+
+                <label for="shipmentPrice">Enter shipment price:</label><br>
+                <input type="number" id="shipmentPrice" name="shipmentPrice" placeholder="shipment_price"><br><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <!--function where owner can allow customer to pay-->
+        <div class="functionContainer">
+            <h4>4. Allow customer to pay</h4>
+            <p class="allowInfo">Only allowed for owner</p>
+            <form onSubmit="App.allowCustomerToPay();">
+                <label for="3_orderID">Enter product ID:</label><br>
+                <input type="text" id="3_orderID" name="3_orderID" placeholder="order_id"><br><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <!--function where customer pays for contract-->
+        <div class="functionContainer">
+            <h4>5. Send payment of the order</h4>
+            <p class="allowInfo">Only allowed for customer</p>
+            <form onSubmit="App.sendPayment();">
+                <label for="4_orderID">Enter product ID:</label><br>
+                <input type="text" id="4_orderID" name="4_orderID" placeholder="order_id"><br><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        
+        <!--function where courier marks order as delivered-->
+        <div class="functionContainer">
+            <h4>Mark order as delivered</h4>
+            <p class="allowInfo">Only allowed for courier</p>
+            <form onSubmit="App.orderDelivered();">
+                <label for="5_orderID">Enter product ID:</label><br>
+                <input type="text" id="5_orderID" name="5_orderID" placeholder="order_id"><br><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <!-- Order information -->
+        <div class="functionContainer">
+            <h4>Order information:</h4>
+
+            <p class="orders" id="orders">Product Name: &nbsp</p>
+            <p id="_productID"></p>
+
+            <p class="orders" >Quantity: &nbsp</p>
+            <p id="_quantity"></p>
+
+            <p class="orders" >Price: &nbsp</p>
+            <p id="_price"></p>
+
+            <p class="orders" >Is paid: &nbsp</p>
+            <p id="_isPaid"></p>
+
+            <p class="orders">Can be paid: &nbsp</p>
+            <p id="_canBePaid"></p>
+
+            <button id="infoButton" onclick="App.updateOrderInfo()">Update order info</button>
+        </div>
+
+        <!--Addresses involved in this contract-->
+        <div class="functionContainer">
+            <h4>Addresses involved in this contract</h4>
+            <p>Owner address: &nbsp</p>
+            <p id="ownerAddress"></p>
+            <p>Customer address: &nbsp</p>
+            <p id="customerAddress"></p>
+            <p>Courier address: &nbsp</p>
+            <p id="courierAddress"></p>
+        </div>
+        
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="vendor/truffle-contract/dist/truffle-contract.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
